@@ -16,7 +16,9 @@ describe('AuthController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (SIGN UP)', () => {
+
+
+  it('/ (SIGN UP create a non exist user)', () => {
     return request(app.getHttpServer())
       .post('/auth/signup')
       .send({ email: 'mailtest@test.com.br', password: 'ultraSecretPass' })
@@ -24,8 +26,23 @@ describe('AuthController (e2e)', () => {
       .then((res) => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const { email, id } = res.body;
-        expect(id).toBeDefined();
-        expect(email).toBeDefined();
+          expect(id).toBeDefined();
+          expect(email).toBeDefined();
       });
   });
+
+    it('/ (SIGN UP create a exist user)', () => {
+    return request(app.getHttpServer())
+      .post('/auth/signup')
+      .send({ email: 'mailtest@test.com.br', password: 'ultraSecretPass' })
+      .expect(201)
+      .then((res) => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        const { email, id } = res.body;
+          expect(id).toBeDefined();
+          expect(email).toBeDefined();
+      });
+  });
+
+
 });

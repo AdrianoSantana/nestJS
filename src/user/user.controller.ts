@@ -3,6 +3,8 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   Post,
   Put,
@@ -46,6 +48,7 @@ export class UserController {
   }
 
   @Post('/signin')
+  @HttpCode(HttpStatus.OK)
   public async signIn(
     @Body() body: AuthUserDTO,
     @Session() session: any,

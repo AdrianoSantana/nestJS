@@ -1,4 +1,4 @@
-import { Expose } from 'class-transformer';
+import { Expose, Transform } from 'class-transformer';
 
 export class GetUserDTO {
   @Expose()
@@ -6,4 +6,7 @@ export class GetUserDTO {
 
   @Expose()
   email: string;
+
+  @Expose()
+  isAdmin: boolean
 }
